@@ -1,0 +1,33 @@
+<html>
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+	<script src="userActivity.js"></script>
+</head>
+<body>
+
+	<input type="text" />
+		
+	<div id="log"></div>
+	
+	<script>
+	
+	function log(s) {
+		$('#log').append(s + '<br/>');
+		if (console && console.log) {
+			console.log(console, arguments);
+		}
+	}
+	
+	$(document).userActivity({
+		timeout: 5 * 1000,
+		onActive: function( e, state, time ){
+			log('ACTIVE: ' + state + ', time: ' +  (time/1000) + 's');
+		},
+		onIdle: function( e, state, time ){
+			log('IDLE  : ' + state + ', time: ' +  (time/1000) + 's');
+		}
+	});
+	
+	</script>
+</body>
+</html>
